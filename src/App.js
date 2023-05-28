@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { GlobalStyles } from "./Styles/global";
+
+import { ThemeProvider } from "styled-components";
+import { useTheme } from "./context/ThemeContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import RootLayout from "./pages/Root";
+import ErrorPage from "./pages/ErrorPage";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./pages/Home";
+import User from "./pages/User";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "user",
+        element: <User />,
+      },
+    ],
+  },
+]);
 
 function App() {
+  const { theme } = useTheme();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <ToastContainer />
+      <GlobalStyles />
+      <div className="canvas">
+        <RouterProvider router={router} />
+      </div>
+    </ThemeProvider>
   );
 }
 
