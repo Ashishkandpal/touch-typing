@@ -20,7 +20,7 @@ const Header = () => {
           height={"70px"}
           width={"70px"}
           style={{ borderRadius: "50%" }}
-          onClick={toHome()}
+          onClick={() => toHome()}
         />
       </div>
       <div style={{ textAlign: "left", fontSize: "40px" }}>Touch Typing</div>

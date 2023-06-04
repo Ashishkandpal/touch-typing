@@ -43,7 +43,6 @@ const Play = () => {
   ];
 
   if (currentSound) {
-    console.log("stopping it");
     currentSound.stop();
   }
   const num = Math.floor(Math.random() * 10);
