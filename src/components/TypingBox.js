@@ -177,8 +177,6 @@ const TypingBox = () => {
 
     setCurrentCharIndex(currentCharIndex + 1);
     if (JSON.parse(localStorage.getItem("sound"))) {
-      console.log(JSON.parse(localStorage.getItem("sound")));
-      console.log("i am sound");
       Play();
     }
   };
@@ -188,7 +186,6 @@ const TypingBox = () => {
   };
 
   const calculateAcc = () => {
-    console.log(Math.round(correctWords / currentWordIndex) * 100);
     return Math.round((correctWords / currentWordIndex) * 100);
   };
 
@@ -222,9 +219,9 @@ const TypingBox = () => {
         <div className="type-box" onClick={focusInput}>
           <div className="words">
             {wordsArr.map((word, index) => (
-              <span className="word" ref={wordsSpanRef[index]}>
-                {word.split("").map((ch) => (
-                  <span>{ch}</span>
+              <span key={index} className="word" ref={wordsSpanRef[index]}>
+                {word.split("").map((ch, i) => (
+                  <span key={i}>{ch}</span>
                 ))}
               </span>
             ))}

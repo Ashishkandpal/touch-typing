@@ -30,7 +30,6 @@ const User = () => {
             doc.data().wpm,
           ]);
         });
-        console.log(tempData);
 
         setData(tempData);
         setGraphData(tempGraphData.reverse());
@@ -50,7 +49,6 @@ const User = () => {
   if (loading || dataLoading) {
     return <CircularProgress />;
   }
-  console.log("user", data.length);
   return (
     <div className="canvas">
       <UserInfo totalTestsTaken={data.length} />
